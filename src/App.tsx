@@ -6,6 +6,7 @@ import React from 'react';
 
 export const App = () => {
   const num = 2;
+  const num2 = 23;
   return (
     <>
       <h1>
