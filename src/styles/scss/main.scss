@@ -1,0 +1,51 @@
+$background-color: #ffd2ad;
+
+body {
+  background-color: $background-color;
+  font-family: Arial, sans-serif;
+}
+
+@mixin flex-center {
+  position: absolute; /* or fixed if you want it to stay fixed on the screen */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-center {
+  @include flex-center();
+}
+
+.letter-solid {
+  font-size: 12ch;
+  font-weight: 600;
+}
+
+.animated-text {
+  display: inline-block;
+  font-family: monospace; // Typing effect looks better with monospace fonts
+  white-space: nowrap; // Prevents text wrapping
+  overflow: hidden; // Ensures the "typed" part is hidden initially
+  max-width: fit-content;
+  border-right: 2px solid black; // Simulate the cursor
+  animation:
+    typing 10s steps(5),
+    blink 0.7s step-end infinite;
+
+  // Typing animation
+  @keyframes typing {
+    from {
+      width: 0ch; // Start with no visible characters
+    }
+    to {
+      width: 37ch; // Match the exact number of characters
+    }
+  }
+
+  // Cursor blinking animation
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+}

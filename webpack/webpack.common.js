@@ -18,6 +18,14 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.scss$/, // SCSS loader
+        use: [
+          'style-loader', // Injects styles into DOM
+          'css-loader', // Resolves CSS imports
+          'sass-loader', // Compiles SCSS to CSS
+        ],
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
