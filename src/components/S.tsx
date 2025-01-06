@@ -28,7 +28,7 @@ export const S = ({ onClick }: { onClick: () => void }) => {
         style={{ display: isHover ? 'inline-block' : 'none' }}
       >
         <span style={{ fontSize: '18px' }}>
-          Single Responsability Principle
+          Single Responsibility Principle
         </span>
       </div>
     </>

@@ -17,10 +17,10 @@ export const TitleTSSOLID = () => {
       <div className={`flex-center ${moveLeft ? 'fade-out' : ''}`}>
         <div className="animated-text">
           <S onClick={handleMoveLeft} />
-          <O />
-          <L />
-          <I />
-          <D />
+          <O onClick={handleMoveLeft} />
+          <L onClick={handleMoveLeft} />
+          <I onClick={handleMoveLeft} />
+          <D onClick={handleMoveLeft} />
         </div>
       </div>
       <div
