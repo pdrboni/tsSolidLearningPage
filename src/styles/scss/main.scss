@@ -10,6 +10,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: transform 0.5s ease-in-out;
 }
 
 .flex-center {
@@ -17,8 +18,25 @@ body {
 }
 
 .letter-solid {
+  position: relative;
   font-size: 12ch;
   font-weight: 600;
+  cursor: pointer;
+  &::after {
+    content: ''; // Pseudo-element for the underline
+    position: absolute;
+    bottom: 0; // Position at the bottom of the component
+    width: 0; // Initial width
+    height: 2px; // Thickness of the underline
+    background-color: #000; // Underline color
+    left: 50%; // Start from the center
+    transform: translateX(-50%); // Center alignment
+    transition: all 0.3s ease; // Smooth transition
+  }
+
+  &:hover::after {
+    width: 54px; // Expand the underline to full width
+  }
 }
 
 .animated-text {
@@ -29,7 +47,7 @@ body {
   max-width: fit-content;
   border-right: 2px solid black; // Simulate the cursor
   animation:
-    typing 10s steps(5),
+    typing 2s steps(5),
     blink 0.7s step-end infinite;
 
   // Typing animation
@@ -48,4 +66,77 @@ body {
       border-color: transparent;
     }
   }
+}
+
+.principle-name {
+  position: absolute;
+  margin-top: 180px;
+  left: 50%; // Start from the center
+  transform: translateX(-50%); // Center alignment
+
+  white-space: nowrap; // Prevents text wrapping
+  overflow: hidden;
+  max-width: fit-content;
+  border-right: 2px solid black; // Simulate the cursor
+  animation:
+    appear 2s,
+    border-fade 0.3s ease-out 1.5s forwards;
+
+  // appear animation
+  @keyframes appear {
+    from {
+      width: 0ch; // Start with no visible characters
+    }
+    to {
+      width: 130%; // Match the exact number of characters
+    }
+  }
+
+  // border-fade animation for making the border transparent
+  @keyframes border-fade {
+    from {
+      border-right-color: black; // Start with the border visible
+    }
+    to {
+      border-right-color: transparent; // Fade out the border
+    }
+  }
+}
+
+.fade-out {
+  @include flex-center();
+  animation: fade-out 0.5s ease-out forwards;
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      transform: translateX(-500px) translateY(-50%); // Adjust as needed
+      opacity: 0;
+    }
+  }
+}
+
+.fade-in {
+  animation: fade-in 1s ease-out forwards;
+
+  @keyframes fade-in {
+    from {
+      transform: translateX(500px) translateY(-50%); // Adjust as needed
+      opacity: 0;
+    }
+
+    to {
+      @include flex-center();
+      opacity: 1;
+    }
+  }
+}
+
+.reset-animation {
+  animation: none; // Clear any animations
+  opacity: 1; // Reset to fully visible
+  @include flex-center();
 }
