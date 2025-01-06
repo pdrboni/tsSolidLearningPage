@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { HomeButton } from './HomeButton';
 
 export const SRP = () => {
   const [fadeOutSpinner, setFadeOutSpinner] = useState(false);
@@ -15,6 +16,7 @@ export const SRP = () => {
 
   return (
     <>
+      <HomeButton />
       <div
         className={`flex-center ${fadeOutSpinner ? 'fade-out' : 'reset-animation'}`}
       >

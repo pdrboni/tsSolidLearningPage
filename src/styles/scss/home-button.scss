@@ -1,0 +1,21 @@
+.home-button {
+  cursor: pointer;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+
+.fade-in-home-button {
+  animation: fade-in-home-button 1s ease-out forwards;
+
+  @keyframes fade-in-home-button {
+    from {
+      transform: translateX(60px); // Adjust as needed
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}

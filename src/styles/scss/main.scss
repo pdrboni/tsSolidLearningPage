@@ -2,7 +2,7 @@ $background-color: #ffd2ad;
 
 body {
   background-color: $background-color;
-  font-family: Arial, sans-serif;
+  font-family: monospace;
 }
 
 @mixin flex-center {
