@@ -1,0 +1,56 @@
+.post-title {
+  display: flex;
+  text-align: start;
+}
+
+.post-container {
+  width: 1000px;
+  margin-top: 100px;
+  margin-left: 5%;
+  height: 100vh;
+}
+
+.paragraph-container {
+  margin: 40px 0px;
+  display: flex;
+  flex-wrap: wrap; // Allows children to wrap to the next line
+  gap: 8px; // Optional: Adds spacing between the spans
+  align-items: center;
+}
+
+.paragraph-container span {
+  word-break: break-word; // Ensures long words break to the next line
+  max-width: 70%; // Ensures spans don't exceed the container's width
+}
+
+.paragraph-container ul {
+  word-break: break-word; // Ensures long words break to the next line
+  max-width: 70%; // Ensures spans don't exceed the container's width
+}
+
+.paragraph-container li {
+  margin: 10px 0px; // Ensures long words break to the next line
+}
+
+.paragraph-image {
+  width: 250px;
+  height: 250px;
+}
+
+.paragraph-container-no-image span {
+  word-break: break-word; // Ensures long words break to the next line
+  max-width: 100%; // Ensures spans don't exceed the container's width
+}
+
+pre {
+  width: 100%; /* Make the code block span the entire width */
+  box-sizing: border-box; /* Include padding in width calculations */
+  background-color: #1e1e1e; /* VS Code-like background */
+  color: #dcdcdc; /* VS Code-like text color */
+  font-family: 'Fira Code', monospace; /* Code font */
+  font-size: 14px;
+  padding: 1rem; /* Add some padding inside the code block */
+  border-radius: 5px;
+  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  margin: 0; /* Remove default margins */
+}

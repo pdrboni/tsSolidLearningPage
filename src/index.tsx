@@ -7,6 +7,7 @@ import { OCP } from './components/ocp';
 import { LSP } from './components/lsp';
 import { ISP } from './components/isp';
 import { DIP } from './components/dip';
+import { Footer } from './components/Footer';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -18,5 +19,6 @@ createRoot(document.getElementById('root')!).render(
       <Route path="isp" element={<ISP />} />
       <Route path="dip" element={<DIP />} />
     </Routes>
+    <Footer />
   </BrowserRouter>,
 );

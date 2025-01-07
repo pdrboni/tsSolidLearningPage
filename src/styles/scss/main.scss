@@ -3,6 +3,9 @@ $background-color: #ffd2ad;
 body {
   background-color: $background-color;
   font-family: monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @mixin flex-center {
