@@ -95,7 +95,7 @@ export const SRP = () => {
         </div>
       </div>
       <div
-        className={`post-container ${fadeOutSpinner ? 'fade-in' : 'visually-hidden'}`}
+        className={`${fadeOutSpinner ? 'post-fade-in post-container' : 'visually-hidden'}`}
       >
         <h1 className="post-title">Single Responsibility Principle</h1>
         <div className="paragraph-container">
