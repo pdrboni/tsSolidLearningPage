@@ -1,4 +1,7 @@
 $background-color: #ffd2ad;
+$background-dark-color: #27170b;
+$text-default-color: #27170b;
+$text-dark-color: #ffd2ad;
 
 body {
   background-color: $background-color;
@@ -6,6 +9,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: $text-default-color;
+}
+
+body.dark-mode {
+  background-color: $background-dark-color; // Dark mode background
+  color: #ffd2ad; // Dark mode text
 }
 
 @mixin flex-center {
@@ -31,7 +40,7 @@ body {
     bottom: 0; // Position at the bottom of the component
     width: 0; // Initial width
     height: 2px; // Thickness of the underline
-    background-color: #000; // Underline color
+    background-color: $text-default-color; // Underline color
     left: 50%; // Start from the center
     transform: translateX(-50%); // Center alignment
     transition: all 0.3s ease; // Smooth transition
@@ -48,7 +57,7 @@ body {
   white-space: nowrap; // Prevents text wrapping
   overflow: hidden; // Ensures the "typed" part is hidden initially
   max-width: fit-content;
-  border-right: 2px solid black; // Simulate the cursor
+  border-right: 2px solid $text-default-color; // Simulate the cursor
   animation:
     typing 2s steps(5),
     blink 0.7s step-end infinite;
@@ -69,6 +78,10 @@ body {
       border-color: transparent;
     }
   }
+
+  &.dark-mode {
+    border-right: 2px solid $text-dark-color; // Simulate the cursor
+  }
 }
 
 .principle-name {
@@ -80,11 +93,26 @@ body {
   white-space: nowrap; // Prevents text wrapping
   overflow: hidden;
   max-width: fit-content;
-  border-right: 2px solid black; // Simulate the cursor
+  border-right: 2px solid $text-default-color; // Simulate the cursor
   animation:
     appear 2s,
     border-fade 0.3s ease-out 1.5s forwards;
 
+  &.dark-mode {
+    border-right: 2px solid $text-dark-color; // Simulate the cursor
+    animation:
+      appear 2s,
+      border-fade-dark-mode 0.3s ease-out 1.5s forwards;
+
+    @keyframes border-fade-dark-mode {
+      from {
+        border-right-color: $text-dark-color; // Start with the border visible
+      }
+      to {
+        border-right-color: transparent; // Fade out the border
+      }
+    }
+  }
   // appear animation
   @keyframes appear {
     from {
@@ -98,7 +126,7 @@ body {
   // border-fade animation for making the border transparent
   @keyframes border-fade {
     from {
-      border-right-color: black; // Start with the border visible
+      border-right-color: $text-default-color; // Start with the border visible
     }
     to {
       border-right-color: transparent; // Fade out the border

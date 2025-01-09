@@ -8,9 +8,11 @@ import { LSP } from './components/lsp';
 import { ISP } from './components/isp';
 import { DIP } from './components/dip';
 import { Footer } from './components/Footer';
+import { DarkModeButton } from './components/DarkModeButton';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
+    <DarkModeButton />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="srp" element={<SRP />} />

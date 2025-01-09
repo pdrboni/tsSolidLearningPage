@@ -1,8 +1,16 @@
+@use './main.scss' as vars;
+
 .home-button {
   cursor: pointer;
   position: fixed;
   top: 10%;
   left: 10%;
+  color: vars.$text-default-color;
+
+  &.dark-mode {
+    font-weight: bold;
+    color: vars.$text-dark-color;
+  }
 }
 
 .fade-in-home-button {
