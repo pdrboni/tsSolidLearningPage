@@ -1,59 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../styles/scss/dark-mode-button.scss';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const DarkModeButton: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(
-    () => localStorage.getItem('darkMode') === 'true',
-  );
-
-  useEffect(() => {
-    const labels = document.querySelectorAll('label');
-    const animatedTexts = document.querySelectorAll('.animated-text');
-    const principleNames = document.querySelectorAll('.principle-name');
-    const homeButtons = document.querySelectorAll('.home-button');
-    const footers = document.querySelectorAll('.footer');
-
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      labels.forEach((label) => {
-        label.classList.add('dark-mode');
-      });
-      animatedTexts.forEach((animatedText) => {
-        animatedText.classList.add('dark-mode');
-      });
-      principleNames.forEach((principleName) => {
-        principleName.classList.add('dark-mode');
-      });
-      homeButtons.forEach((homeButton) => {
-        homeButton.classList.add('dark-mode');
-      });
-      footers.forEach((footer) => {
-        footer.classList.add('dark-mode');
-      });
-    } else {
-      document.body.classList.remove('dark-mode');
-      labels.forEach((label) => {
-        label.classList.remove('dark-mode');
-      });
-      animatedTexts.forEach((animatedText) => {
-        animatedText.classList.remove('dark-mode');
-      });
-      principleNames.forEach((principleName) => {
-        principleName.classList.remove('dark-mode');
-      });
-      homeButtons.forEach((homeButton) => {
-        homeButton.classList.remove('dark-mode');
-      });
-      footers.forEach((footer) => {
-        footer.classList.remove('dark-mode');
-      });
-    }
-    // Save preference in localStorage
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
+  const { theme, toggleTheme } = useTheme();
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
+    toggleTheme();
   };
 
   return (
@@ -63,10 +16,13 @@ export const DarkModeButton: React.FC = () => {
         type="checkbox"
         role="switch"
         id="flexSwitchCheckDefault"
-        checked={isDarkMode}
+        checked={theme === 'dark-mode'}
         onChange={toggleDarkMode}
       />
-      <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+      <label
+        className={`form-check-label ${theme}`}
+        htmlFor="flexSwitchCheckDefault"
+      >
         Dark Mode
       </label>
     </div>

@@ -4,8 +4,10 @@ import { O } from './O';
 import { L } from './L';
 import { I } from './I';
 import { D } from './D';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const TitleTSSOLID = () => {
+  const { theme } = useTheme();
   const [moveLeft, setMoveLeft] = useState(false);
 
   const handleMoveLeft = () => {
@@ -15,7 +17,7 @@ export const TitleTSSOLID = () => {
   return (
     <>
       <div className={`flex-center ${moveLeft ? 'fade-out' : ''}`}>
-        <div className="animated-text">
+        <div className={`animated-text ${theme} `}>
           <S onClick={handleMoveLeft} />
           <O onClick={handleMoveLeft} />
           <L onClick={handleMoveLeft} />

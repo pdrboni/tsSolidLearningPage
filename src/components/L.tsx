@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { handleMouseOver } from '../utils/functions/handleMouseOver';
 import { useNavigate } from 'react-router';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const L = ({ onClick }: { onClick: () => void }) => {
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const handleClick = () => {
     onClick(); // Trigger the move-left animation
@@ -24,7 +26,7 @@ export const L = ({ onClick }: { onClick: () => void }) => {
         L
       </span>
       <div
-        className="principle-name"
+        className={`principle-name ${theme}`}
         style={{ display: isHover ? 'inline-block' : 'none' }}
       >
         <span style={{ fontSize: '18px' }}>Liskov Substitution Principle</span>

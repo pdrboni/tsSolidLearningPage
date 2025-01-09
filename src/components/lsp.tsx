@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { HomeButton } from './HomeButton';
 import '../styles/scss/post.scss';
-import IMG_REACT from '../../images/react-logo-svg.svg';
+
 import hljs from 'highlight.js';
 import 'highlight.js/styles/vs2015.css'; // VS Code-like style
+import { useTheme } from '../contexts/ThemeContext';
 
 export const LSP = () => {
+  const { theme } = useTheme();
   const [fadeOutSpinner, setFadeOutSpinner] = useState(false);
 
   const badCode = `
@@ -121,10 +123,10 @@ export const LSP = () => {
             should maintain the behavior of the superclass (Account), which is
             the apply of OCP, by the way.
           </span>
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
         </div>
         <div className="paragraph-container">
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
           <ul>
             <strong>Benefits:</strong>
             <li>

@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import '../styles/scss/home-button.scss';
 import { Link } from 'react-router';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const HomeButton = () => {
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(
-    () => localStorage.getItem('darkMode') === 'true',
-  );
+  const { theme } = useTheme();
 
   return (
     <>
       <Link to={'/'}>
-        <span
-          className={`home-button ${isDarkMode ? 'dark-mode' : ''} fade-in-home-button`}
-        >
+        <span className={`home-button ${theme} fade-in-home-button`}>
           <FaArrowLeft /> Home
         </span>
       </Link>

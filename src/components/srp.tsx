@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { HomeButton } from './HomeButton';
 import '../styles/scss/post.scss';
-import IMG_REACT from '../../images/react-logo-svg.svg';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/vs2015.css'; // VS Code-like style
+import { useTheme } from '../contexts/ThemeContext';
 
 export const SRP = () => {
   const [fadeOutSpinner, setFadeOutSpinner] = useState(false);
+  const { theme } = useTheme();
 
   const badCode = `
     class UserManager {
@@ -107,10 +108,10 @@ export const SRP = () => {
             account could enter with database administrator role, which has all
             the permissions in our fictional application.
           </span>
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
         </div>
         <div className="paragraph-container">
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
           <ul>
             <strong>Benefits:</strong>
             <li>

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { HomeButton } from './HomeButton';
 import '../styles/scss/post.scss';
-import IMG_REACT from '../../images/react-logo-svg.svg';
+
 import hljs from 'highlight.js';
 import 'highlight.js/styles/vs2015.css'; // VS Code-like style
+import { useTheme } from '../contexts/ThemeContext';
 
 export const DIP = () => {
   const [fadeOutSpinner, setFadeOutSpinner] = useState(false);
+  const { theme } = useTheme();
 
   const badCode = `
     class BackendDeveloper {
@@ -156,10 +158,10 @@ export const DIP = () => {
             low-level classes. If the answer is YES, consider introducing
             abstractions to make maintenance and code evolution easier.
           </span>
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
         </div>
         <div className="paragraph-container">
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
           <ul>
             <strong>Benefits:</strong>
             <li>

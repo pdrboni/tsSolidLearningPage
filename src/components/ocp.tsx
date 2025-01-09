@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { HomeButton } from './HomeButton';
 import '../styles/scss/post.scss';
-import IMG_REACT from '../../images/react-logo-svg.svg';
+
 import hljs from 'highlight.js';
 import 'highlight.js/styles/vs2015.css'; // VS Code-like style
+import { useTheme } from '../contexts/ThemeContext';
 
 export const OCP = () => {
   const [fadeOutSpinner, setFadeOutSpinner] = useState(false);
+  const { theme } = useTheme();
 
   const badCode = `
     class NotificationService {
@@ -113,10 +115,10 @@ export const OCP = () => {
             original class with other ways. You add this new functionality
             creating another class, extending your original class to it.
           </span>
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
         </div>
         <div className="paragraph-container">
-          <img className="paragraph-image" src={IMG_REACT} />
+          <div className={`paragraph-image ${theme}`} />
           <ul>
             <strong>Benefits:</strong>
             <li>
