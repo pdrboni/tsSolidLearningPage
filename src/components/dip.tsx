@@ -185,8 +185,8 @@ export const DIP = () => {
             concrete implementations of back and frontend developers. Any
             changes to the developer classes or adding a new type of developer
             would require modifying the Project class. Let&apos;s say now I want
-            to change BackendDeveloper class an want to pass the language to the
-            constructor. Now my BackendDeveloper class is like that:
+            to change BackendDeveloper class and want to pass the language to
+            the constructor. Now my BackendDeveloper class is like that:
           </span>
         </div>
 
@@ -208,9 +208,9 @@ export const DIP = () => {
 
         <div className="paragraph-container-no-image">
           <span>
-            You can see clearly now that it&apos;s hard to test Project class
-            isolated because it can&apos;t work without backendDeveloper and
-            frontendDeveloper.
+            You can see clearly now that it&apos;s hard to maintain this code.
+            Also it is hard to test Project class isolated because it can&apos;t
+            work without backendDeveloper and frontendDeveloper.
           </span>
         </div>
 
