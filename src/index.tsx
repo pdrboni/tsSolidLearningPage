@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
 import { SRP } from './components/srp';
 import { OCP } from './components/ocp';
 import { LSP } from './components/lsp';
@@ -11,9 +10,10 @@ import { DarkModeButton } from './components/DarkModeButton';
 import { TitleTSSOLID } from './components/TitleTSSOLID';
 import { ThemeProvider } from './contexts/ThemeContext';
 import './styles/scss/main.scss';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter basename="https://pdrboni.github.io/tsSolidLearningPage/">
+  <HashRouter>
     <ThemeProvider>
       <DarkModeButton />
       <Routes>
@@ -26,5 +26,5 @@ createRoot(document.getElementById('root')!).render(
       </Routes>
       <Footer />
     </ThemeProvider>
-  </BrowserRouter>,
+  </HashRouter>,
 );

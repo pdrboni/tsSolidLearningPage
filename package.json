@@ -1,5 +1,5 @@
 {
-  "homepage": "https://pdrboni.github.io/tsSolidLearningPage",
+  "homepage": "./",
   "name": "tssolid",
   "version": "1.0.0",
   "main": "index.js",
@@ -44,6 +44,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
+    "react-router-dom": "^7.1.1",
     "sass-loader": "^16.0.4",
     "style-loader": "^4.0.0",
     "typescript": "^5.7.2",
