@@ -13,7 +13,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import './styles/scss/main.scss';
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter basename="https://pdrboni.github.io/tsSolidLearningPage">
+  <BrowserRouter basename="https://pdrboni.github.io/tsSolidLearningPage/">
     <ThemeProvider>
       <DarkModeButton />
       <Routes>

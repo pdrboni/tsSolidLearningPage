@@ -15,7 +15,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /.husky/],
       },
       {
         test: /\.scss$/, // SCSS loader
