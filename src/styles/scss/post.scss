@@ -36,6 +36,14 @@
 .paragraph-image {
   width: 250px;
   height: 250px;
+  background-image: url('./../../images/react-logo.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &.dark-mode {
+    background-image: url('./../../images/react-logo-dark-mode.svg');
+  }
 }
 
 .paragraph-container-no-image span {
