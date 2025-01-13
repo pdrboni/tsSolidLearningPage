@@ -35,7 +35,7 @@ body.dark-mode {
   font-weight: 600;
   cursor: pointer;
   &::after {
-    content: ''; // Pseudo-element for the underline
+    content: ""; // Pseudo-element for the underline
     position: absolute;
     bottom: 0; // Position at the bottom of the component
     width: 0; // Initial width
@@ -65,10 +65,10 @@ body.dark-mode {
   // Typing animation
   @keyframes typing {
     from {
-      width: 0ch; // Start with no visible characters
+      width: 0%; // Start with no visible characters
     }
     to {
-      width: 37ch; // Match the exact number of characters
+      width: 19%; // Match the exact number of characters
     }
   }
 
