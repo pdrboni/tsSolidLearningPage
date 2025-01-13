@@ -1,4 +1,4 @@
-# SOLI Principles
+# SOLID Principles
 
 Welcome to my **SOLID Principles** learning page! Here you can learn about SOLID Principles. This app was made with TS, React and SASS. Wasn't used any build tool like Vite or CRA. A Babel and Webpack files was configured from scratch. This setup initial setup combined with "npm i react react-dom" gives us a react app setup to be developed from scratch. Other tools was used like Husky, ESLint and editorconfig.
 
@@ -27,27 +27,27 @@ A class should have just one responsibility and one reason to change. Robert C. 
 ### Bad example:
 
 ```js
-    class UserManager {
-    private users: { name: string; email: string }[] = [];
+class UserManager {
+  private users: { name: string; email: string }[] = [];
 
-    addUser(name: string, email: string) {
-      this.users.push({ name, email });
-      this.logAction(`User ${name} added`);
-      this.sendEmail(email, 'Welcome!', `Hello ${name}, welcome to our platform!`);
-    }
-
-    private sendEmail(email: string, subject: string, message: string) {
-      console.log(`Sending email to ${email} with subject "${subject}"`);
-    }
-
-    private logAction(action: string) {
-      console.log(`Log: ${action}`);
-    }
-
-    getUsers() {
-      return this.users;
-    }
+  addUser(name: string, email: string) {
+    this.users.push({ name, email });
+    this.logAction(`User ${name} added`);
+    this.sendEmail(email, 'Welcome!', `Hello ${name}, welcome to our platform!`);
   }
+
+  private sendEmail(email: string, subject: string, message: string) {
+    console.log(`Sending email to ${email} with subject "${subject}"`);
+  }
+
+  private logAction(action: string) {
+    console.log(`Log: ${action}`);
+  }
+
+  getUsers() {
+    return this.users;
+  }
+}
 ```
 
 First of all, this class has multiple responsibilities. It add users, it get the users from the data base, it sends emails and it makes a generic action. This code is hard to maintain because, if the email sending logic changes, this class must change. If the generic action changes (in this case the action is a simple log), this class must change. But how could we write it right?
