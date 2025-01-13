@@ -13,7 +13,7 @@ import './styles/scss/main.scss';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 createRoot(document.getElementById('root')!).render(
-  <HashRouter basename="https://pdrboni.github.io/tsSolidLearningPage">
+  <HashRouter>
     <ThemeProvider>
       <DarkModeButton />
       <Routes>
