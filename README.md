@@ -170,3 +170,305 @@ In the example above, a single class handles all notification types. Every time 
 ```
 
 Using OCP, the NotificationService is open for extension (new notification types can be added) but closed for modification (no changes to existing code). So you have a interface called Notification and all the other notification classes must implement the method send(). This is achieved using interfaces and polymorphism.
+
+## Liskov Substitution Principle:
+
+This principle tells us that a superclass could be substituted to your subclass without any changes in the functionalities. Let&apos;s get an example with a streaming app. This app have a superclass Account and a subclass PremiumAccount. PremiumAccount class derives from Account class. The premium accounts should have the behavior that accounts has, plus the premium behavior. So the premium account should maintain the behavior of the superclass (Account), which is the apply of OCP, by the way.
+
+### Benefits:
+
+- Consistency and Reliability: Derived classes should maintain the expected behavior of the superclass. This prevent unexpected behaviors from being substituted for subclasses.
+- Safe polymorphism: Allows you to change classes without breaking your code.
+
+### Bad example:
+
+```js
+class BackendDeveloper {
+  develop() {
+    console.log("Writing backend code...");
+  }
+}
+
+class FrontendDeveloper {
+  develop() {
+    console.log("Writing frontend code...");
+  }
+}
+
+// High-level module depends directly on low-level modules
+class Project {
+  private backendDeveloper: BackendDeveloper;
+  private frontendDeveloper: FrontendDeveloper;
+
+  constructor() {
+    this.backendDeveloper = new BackendDeveloper();
+    this.frontendDeveloper = new FrontendDeveloper();
+  }
+
+  start() {
+    this.backendDeveloper.develop();
+    this.frontendDeveloper.develop();
+  }
+}
+
+// Usage
+const project = new Project();
+project.start();
+```
+
+In the example above, you can see that the class Project depends on concrete implementations of back and frontend developers. Any changes to the developer classes or adding a new type of developer would require modifying the Project class. Let's say now I want to change BackendDeveloper class and want to pass the language to the constructor. Now my BackendDeveloper class is like that:
+
+### Nice example:
+
+```js
+class PaymentMethod {
+  processPayment(amount: number): string {
+    throw new Error("processPayment method not implemented");
+  }
+}
+
+class CreditCardPayment extends PaymentMethod {
+  processPayment(amount: number): string {
+    return `Paid ${amount} using Credit Card.`;
+  }
+}
+
+class PaypalPayment extends PaymentMethod {
+  processPayment(amount: number): string {
+    return `Paid ${amount} using PayPal.`;
+  }
+}
+
+class BankTransferPayment extends PaymentMethod {
+  processPayment(amount: number): string {
+    return `Paid ${amount} using Bank Transfer (manual approval required).`;
+  }
+}
+
+// Usage
+const creditCard = new CreditCardPayment();
+const paypal = new PaypalPayment();
+const bankTransfer = new BankTransferPayment();
+
+processCustomerPayment(creditCard, 100);
+processCustomerPayment(paypal, 200);
+processCustomerPayment(bankTransfer, 300);
+```
+
+Applying LSP, we have the function processPayment from BankTransferPayment returning the amount transferred and it tells us what method was used (Bank Transfer). Now we have the same behavior that we expect from the superclass.
+
+## Interface Segregation Principle:
+
+An interface should not force the implementation of methods they don't use. When you are implementing interfaces, ask yourself if all classes will need all the methods that this interface has. If the answer is "no", maybe you should apply ISP. A common violation occurs when a single, large interface is implemented by multiple classes that only use a subset of the methods.
+
+### Benefits:
+
+- Code cleaner and Flexible: Specific interfaces avoid classes to implement unnecessary methods.
+- Maintenance and Easy Test: Classes get easier to maintain and test, since its interfaces are short and straight to the point.
+
+### Bad example:
+
+```js
+interface Printer {
+  printDocument(): void;
+  scanDocument(): void;
+  faxDocument(): void;
+}
+
+class BasicPrinter implements Printer {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+
+  scanDocument(): void {
+    throw new Error("BasicPrinter cannot scan.");
+  }
+
+  faxDocument(): void {
+    throw new Error("BasicPrinter cannot fax.");
+  }
+}
+
+class MultiFunctionPrinter implements Printer {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+
+  scanDocument(): void {
+    console.log("Scanning document...");
+  }
+
+  faxDocument(): void {
+    console.log("Faxing document...");
+  }
+}
+```
+
+In the example above, The BasicPrinter class is forced to implement methods (scanDocument and faxDocument) that it does not use. Clients using the BasicPrinter might inadvertently call unsupported methods, leading to runtime errors.
+
+### Nice example:
+
+```js
+interface Printable {
+  printDocument(): void;
+}
+
+interface Scannable {
+  scanDocument(): void;
+}
+
+interface Faxable {
+  faxDocument(): void;
+}
+
+class BasicPrinter implements Printable {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+}
+
+class MultiFunctionPrinter implements Printable, Scannable, Faxable {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+
+  scanDocument(): void {
+    console.log("Scanning document...");
+  }
+
+  faxDocument(): void {
+    console.log("Faxing document...");
+  }
+}
+```
+
+Using ISP, each class depends only on the methods it actually uses. Consumers of Printable know it only provides printing functionality, reducing confusion. Adding new functionality (e.g., EmailDocument) does not affect unrelated classes.
+
+## Dependency Inversion Principle:
+
+The Dependency Inversion Principle (DIP) states that high-level modules should not depend on low-level modules but rather on abstractions. Both should depend from abstractions. Abstractions should not depend on details; instead, details should depend on abstractions. Verify if the high-level classes are coupled with low-level classes. If the answer is YES, consider introducing abstractions to make maintenance and code evolution easier.
+
+### Benefits:
+
+- Decoupling: Interface changes are easier to implement and don't affects high-level code.
+- Easier to test: Modules could be tested isolated using abstractions. With DIP, you can create mocks for unit tests.
+
+### Bad example:
+
+```js
+interface Printer {
+  printDocument(): void;
+  scanDocument(): void;
+  faxDocument(): void;
+}
+
+class BasicPrinter implements Printer {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+
+  scanDocument(): void {
+    throw new Error("BasicPrinter cannot scan.");
+  }
+
+  faxDocument(): void {
+    throw new Error("BasicPrinter cannot fax.");
+  }
+}
+
+class MultiFunctionPrinter implements Printer {
+  printDocument(): void {
+    console.log("Printing document...");
+  }
+
+  scanDocument(): void {
+    console.log("Scanning document...");
+  }
+
+  faxDocument(): void {
+    console.log("Faxing document...");
+  }
+}
+```
+
+In the example above, you can see that the class Project depends on concrete implementations of back and frontend developers. Any changes to the developer classes or adding a new type of developer would require modifying the Project class. Let's say now I want to change BackendDeveloper class and want to pass the language to the constructor. Now my BackendDeveloper class is like that:
+
+```js
+class BackendDeveloper {
+  private language: string;
+
+  constructor(language: string) {
+    this.language = language;
+  }
+
+  develop() {
+    console.log(`Writing backend code in ${this.language}...`);
+  }
+}
+```
+
+Now the Project class should be changed, being like that:
+
+```js
+class Project {
+  private backendDeveloper: BackendDeveloper;
+  private frontendDeveloper: FrontendDeveloper;
+
+  constructor() {
+    // Now you must specify the language when creating the BackendDeveloper
+    this.backendDeveloper = new BackendDeveloper("TypeScript");
+    this.frontendDeveloper = new FrontendDeveloper();
+  }
+
+  start() {
+    this.backendDeveloper.develop();
+    this.frontendDeveloper.develop();
+  }
+}
+```
+
+You can see clearly now that it's hard to maintain this code. Also it is hard to test Project class isolated because it can't work without backendDeveloper and frontendDeveloper.
+
+### Nice example:
+
+```js
+interface Developer {
+  develop(): void;
+}
+
+// Concrete implementations depend on the abstraction
+class BackendDeveloper implements Developer {
+  develop() {
+    console.log("Writing backend code...");
+  }
+}
+
+class FrontendDeveloper implements Developer {
+  develop() {
+    console.log("Writing frontend code...");
+  }
+}
+
+// High-level module depends on the abstraction, not concrete classes
+class Project {
+  private developers: Developer[];
+
+  constructor(developers: Developer[]) {
+    this.developers = developers; // Injected dependency
+  }
+
+  start() {
+    this.developers.forEach((developer) => developer.develop());
+  }
+}
+
+// Usage
+const backendDev = new BackendDeveloper();
+const frontendDev = new FrontendDeveloper();
+
+// Dependencies are injected via the constructor
+const project = new Project([backendDev, frontendDev]);
+project.start();
+```
+
+Applying DIP, we have the Project class depends only on the Developer interface, not the concrete implementations. Adding a new type of developer (e.g., MobileDeveloper) doesn't require changes to the Project class. Makes testing easier—mock implementations of Developer can be used to test Project.

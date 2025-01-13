@@ -77,7 +77,7 @@ export const LSP = () => {
 
     processCustomerPayment(creditCard, 100); // Output: Paid 100 using Credit Card.
     processCustomerPayment(paypal, 200);     // Output: Paid 200 using PayPal.
-    processCustomerPayment(bankTransfer, 300); // Output: Paid 300 using Bank Transfer (manual approval required)..
+    processCustomerPayment(bankTransfer, 300); // Output: Paid 300 using Bank Transfer (manual approval required).
   `;
 
   useEffect(() => {
