@@ -13,3 +13,11 @@
     background-color: vars.$background-dark-color;
   }
 }
+
+.github-link {
+  color: vars.$text-default-color;
+
+  &.dark-mode {
+    color: vars.$text-dark-color;
+  }
+}

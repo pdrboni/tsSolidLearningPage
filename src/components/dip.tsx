@@ -118,6 +118,7 @@ export const DIP = () => {
 
   useEffect(() => {
     hljs.highlightAll();
+    handleFadeOutSpinner();
   }, []);
 
   const handleFadeOutSpinner = (): void => {
@@ -125,10 +126,6 @@ export const DIP = () => {
       setFadeOutSpinner(true);
     }, 1500); // 3000ms = 3 seconds
   };
-
-  useEffect(() => {
-    handleFadeOutSpinner();
-  }, []);
 
   return (
     <>

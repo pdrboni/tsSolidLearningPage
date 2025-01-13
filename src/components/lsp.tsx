@@ -82,6 +82,7 @@ export const LSP = () => {
 
   useEffect(() => {
     hljs.highlightAll();
+    handleFadeOutSpinner();
   }, []);
 
   const handleFadeOutSpinner = (): void => {
@@ -89,10 +90,6 @@ export const LSP = () => {
       setFadeOutSpinner(true);
     }, 1500); // 3000ms = 3 seconds
   };
-
-  useEffect(() => {
-    handleFadeOutSpinner();
-  }, []);
 
   return (
     <>

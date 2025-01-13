@@ -95,13 +95,13 @@ body.dark-mode {
   max-width: fit-content;
   border-right: 2px solid $text-default-color; // Simulate the cursor
   animation:
-    appear 2s,
+    appear 7s,
     border-fade 0.3s ease-out 1.5s forwards;
 
   &.dark-mode {
     border-right: 2px solid $text-dark-color; // Simulate the cursor
     animation:
-      appear 2s,
+      appear 7s,
       border-fade-dark-mode 0.3s ease-out 1.5s forwards;
 
     @keyframes border-fade-dark-mode {
@@ -135,7 +135,6 @@ body.dark-mode {
 }
 
 .fade-out {
-  @include flex-center();
   animation: fade-out 0.5s ease-out forwards;
 
   @keyframes fade-out {
@@ -144,7 +143,7 @@ body.dark-mode {
     }
 
     to {
-      transform: translateX(-500px) translateY(-50%); // Adjust as needed
+      transform: translateX(-500px); // Adjust as needed
       opacity: 0;
     }
   }
@@ -160,7 +159,6 @@ body.dark-mode {
     }
 
     to {
-      @include flex-center();
       opacity: 1;
     }
   }
@@ -170,4 +168,37 @@ body.dark-mode {
   animation: none; // Clear any animations
   opacity: 1; // Reset to fully visible
   @include flex-center();
+}
+
+.fade-in-explanation {
+  animation: fade-in-explanation 1s ease-out forwards;
+}
+
+.title-solid-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.site-explanation {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s ease-in-out;
+  text-align: center;
+}
+
+@keyframes fade-in-explanation {
+  from {
+    transform: translateX(500px) translateY(-50%); // Adjust as needed
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
