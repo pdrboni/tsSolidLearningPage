@@ -103,7 +103,11 @@ export const SRP = () => {
             example with roles in an account. An account could have the role of
             visitor, which cannot do anything besides read posts. The same
             account could enter with database administrator role, which has all
-            the permissions in our fictional application.
+            the permissions in our fictional application. Well in that case each
+            role has its own class dealing with its own properties and
+            functionalities. It's not a good practice to have a big class
+            dealing with tons of functionalities. If that happen, probably you
+            should break it apart in more atomized classes.
           </span>
           <div className={`paragraph-image ${theme}`} />
         </div>
@@ -134,12 +138,17 @@ export const SRP = () => {
 
         <div className="paragraph-container-no-image">
           <span>
-            First of all, this class has multiple responsibilities. It add
+            First of all, this class above has multiple responsibilities. It add
             users, it get the users from the data base, it sends emails and it
-            makes a generic action. This code is hard to maintain because, if
-            the email sending logic changes, this class must change. If the
-            generic action changes (in this case the action is a simple log),
-            this class must change. But how could we write it right?
+            makes a generic action (logAction function). This code is hard to
+            maintain because, if the email sending logic changes, this class
+            must change. If the generic action changes (in this case the action
+            is a simple log), this class must change. Let's say I want to update
+            the sendEmail logic and must slightly change the signature. Oops,
+            the addUser function must change too and if I don't change it, the
+            whole function addUser will be damned because the sendEmail function
+            inside addUser will gives us an exception. But how could we write it
+            right?
           </span>
         </div>
 

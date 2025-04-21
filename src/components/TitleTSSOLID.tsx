@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { S } from './S';
-import { O } from './O';
-import { L } from './L';
-import { I } from './I';
-import { D } from './D';
 import { useTheme } from '../contexts/ThemeContext';
+import { LetterComponent } from './LetterComponent';
 
 export const TitleTSSOLID = () => {
   const { theme } = useTheme();
@@ -39,11 +35,36 @@ export const TitleTSSOLID = () => {
           <br />
         </div>
         <div className={`animated-text ${theme}`}>
-          <S onClick={handleMoveLeft} />
-          <O onClick={handleMoveLeft} />
-          <L onClick={handleMoveLeft} />
-          <I onClick={handleMoveLeft} />
-          <D onClick={handleMoveLeft} />
+          <LetterComponent
+            onClick={handleMoveLeft}
+            letter="S"
+            subtitle="Single Responsibility Principle"
+            link="/srp"
+          />
+          <LetterComponent
+            onClick={handleMoveLeft}
+            letter="O"
+            subtitle="Open-closed Principle"
+            link="/ocp"
+          />
+          <LetterComponent
+            onClick={handleMoveLeft}
+            letter="L"
+            subtitle="Liskov Substitution Principle"
+            link="/lsp"
+          />
+          <LetterComponent
+            onClick={handleMoveLeft}
+            letter="I"
+            subtitle="Interface Segregation Principle"
+            link="/isp"
+          />
+          <LetterComponent
+            onClick={handleMoveLeft}
+            letter="D"
+            subtitle="Dependency Inversion Principle"
+            link="/dip"
+          />
         </div>
       </div>
       <div

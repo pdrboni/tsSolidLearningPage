@@ -147,13 +147,14 @@ export const DIP = () => {
         <h1 className="post-title">Dependency Inversion Principle</h1>
         <div className="paragraph-container">
           <span>
-            The Dependency Inversion Principle (DIP) states that high-level
-            modules should not depend on low-level modules but rather on
-            abstractions. Both should depend from abstractions. Abstractions
-            should not depend on details; instead, details should depend on
-            abstractions. Verify if the high-level classes are coupled with
-            low-level classes. If the answer is YES, consider introducing
-            abstractions to make maintenance and code evolution easier.
+            The Dependency Inversion Principle says that high-level modules
+            (like business logic) should not depend directly on low-level
+            modules (like database or file system code). Instead, both should
+            depend on abstractions—like interfaces or abstract classes. Think of
+            it like this: your main logic shouldn't care how things get done,
+            just that they do. And the parts that actually do the work (like
+            saving a file) should plug into your logic through a common contract
+            (the abstraction).
           </span>
           <div className={`paragraph-image ${theme}`} />
         </div>

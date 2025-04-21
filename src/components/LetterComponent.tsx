@@ -3,7 +3,17 @@ import { handleMouseOver } from '../utils/functions/handleMouseOver';
 import { useNavigate } from 'react-router';
 import { useTheme } from '../contexts/ThemeContext';
 
-export const L = ({ onClick }: { onClick: () => void }) => {
+export const LetterComponent = ({
+  onClick,
+  letter,
+  subtitle,
+  link,
+}: {
+  onClick: () => void;
+  letter: string;
+  subtitle: string;
+  link: string;
+}) => {
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
@@ -11,7 +21,7 @@ export const L = ({ onClick }: { onClick: () => void }) => {
   const handleClick = () => {
     onClick(); // Trigger the move-left animation
     setTimeout(() => {
-      navigate('/lsp'); // Navigate to the desired route after 3 seconds
+      navigate(link); // Navigate to the desired route after 3 seconds
     }, 3000); // 3000ms = 3 seconds
   };
 
@@ -23,13 +33,13 @@ export const L = ({ onClick }: { onClick: () => void }) => {
         onMouseLeave={() => handleMouseOver(setIsHover)}
         onClick={handleClick}
       >
-        L
+        {letter}
       </span>
       <div
         className={`principle-name ${theme}`}
         style={{ display: isHover ? 'inline-block' : 'none' }}
       >
-        <span style={{ fontSize: '18px' }}>Liskov Substitution Principle</span>
+        <span style={{ fontSize: '18px' }}>{subtitle}</span>
       </div>
     </>
   );
